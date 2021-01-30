@@ -41,4 +41,7 @@ export default {
   build: {
     transpile: [/^element-ui/],
   },
+
+  // Custom configuration
+  srcDir: 'app',
 }
