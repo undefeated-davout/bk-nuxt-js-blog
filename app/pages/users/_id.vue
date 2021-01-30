@@ -20,7 +20,12 @@
           <div slot="header" class="clearfix">
             <span>{{ user.id }} さんの投稿</span>
           </div>
-          <el-table :data="userPosts" style="width: 100%" class="table">
+          <el-table
+            :data="userPosts"
+            style="width: 100%"
+            class="table"
+            @row-click="handleClick"
+          >
             <el-table-column prop="title" label="タイトル" />
             <el-table-column prop="createdAt" label="投稿日時" width="160" />
           </el-table>
@@ -55,6 +60,11 @@ export default {
       return Object.assign({ posts: [] }, user)
     },
     ...mapGetters('users', ['users']),
+  },
+  methods: {
+    handleClick(post) {
+      this.$router.push(`/posts/${post.id}`)
+    },
   },
 }
 </script>

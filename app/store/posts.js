@@ -13,9 +13,11 @@ export const mutations = {
   addPost(state, { post }) {
     state.posts.push(post)
   },
+
   updatePost(state, { post }) {
     state.posts = state.posts.map((p) => (p.id === post.id ? post : p))
   },
+
   clearPosts(state) {
     state.posts = []
   },
@@ -26,6 +28,7 @@ export const actions = {
     const post = await this.$axios.$get(`/posts/${id}.json`)
     commit('addPost', { post: { ...post, id } })
   },
+
   async fetchPosts({ commit }) {
     const posts = await this.$axios.$get(`/posts.json`)
     commit('clearPosts')
@@ -40,6 +43,7 @@ export const actions = {
         })
       )
   },
+
   async publishPost({ commit }, { payload }) {
     const user = await this.$axios.$get(`/users/${payload.user.id}.json`)
     const createdAt = moment().format()
@@ -57,6 +61,7 @@ export const actions = {
     ])
     commit('addPost', { post })
   },
+
   async addLikeToPost({ commit }, { user, post }) {
     post.likes.push({
       createdAt: moment().format(),
@@ -66,6 +71,7 @@ export const actions = {
     const newPost = await this.$axios.$put(`/posts/${post.id}.json`, post)
     commit('updatePost', { post: newPost })
   },
+
   async removeLikeToPost({ commit }, { user, post }) {
     post.likes = post.likes.filter((like) => like.userID !== user.id) || []
     const newPost = await this.$axios.$put(`/posts/${post.id}.json`, post)

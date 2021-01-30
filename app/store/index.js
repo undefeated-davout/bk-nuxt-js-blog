@@ -1,5 +1,3 @@
-import moment from '~/plugins/moment'
-
 export const state = () => ({
   isLoggedIn: false,
   user: null,
@@ -19,6 +17,7 @@ export const mutations = {
     state.user = user
     state.isLoggedIn = true
   },
+
   updateUser(state, { user }) {
     state.user = user
   },
@@ -42,21 +41,5 @@ export const actions = {
     const user = await this.$axios.$get(`/users/${id}.json`)
     if (!user.id) throw new Error('Invalid user')
     commit('setUser', { user })
-  },
-
-  async addLikeLogToUser({ commit }, { user, post }) {
-    user.likes.push({
-      createdAt: moment().format(),
-      userID: user.id,
-      postID: post.id,
-    })
-    const newUser = await this.$axios.$put(`/users/${user.id}.json`, user)
-    commit('updateUser', { user: newUser })
-  },
-
-  async removeLikeLogToUser({ commit }, { user, post }) {
-    user.likes = post.likes.filter((like) => like.userID !== user.id) || []
-    const newUser = await this.$axios.$put(`/users/${user.id}.json`, user)
-    commit('updateUser', { user: newUser })
   },
 }

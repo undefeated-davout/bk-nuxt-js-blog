@@ -78,7 +78,6 @@ export default {
       }
       const likePayload = { user: this.user, post: this.post }
       this.addLikeToPost(cloneDeep(likePayload))
-      this.addLikeLogToUser(cloneDeep(likePayload))
     },
     unlike() {
       if (!this.isLoggedIn) {
@@ -86,9 +85,7 @@ export default {
       }
       const likePayload = { user: this.user, post: this.post }
       this.removeLikeToPost(cloneDeep(likePayload))
-      this.removeLikeLogToUser(cloneDeep(likePayload))
     },
-    ...mapActions(['addLikeLogToUser', 'removeLikeLogToUser']),
     ...mapActions('posts', ['addLikeToPost', 'removeLikeToPost']),
   },
 }
