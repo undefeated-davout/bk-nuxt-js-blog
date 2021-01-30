@@ -44,4 +44,7 @@ export default {
 
   // Custom configuration
   srcDir: 'app',
+  router: {
+    middleware: ['auth-cookie'],
+  },
 }

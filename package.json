@@ -14,7 +14,10 @@
     "@nuxtjs/axios": "^5.12.5",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.0",
-    "nuxt": "^2.14.12"
+    "lodash.clonedeep": "^4.5.0",
+    "moment": "^2.29.1",
+    "nuxt": "^2.14.12",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
